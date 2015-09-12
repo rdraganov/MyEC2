@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyEc2", "MyEc2\MyEc2.csproj", "{482F3E30-7E11-4A24-B98A-713FB6CEB1DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Section_Explorer", "Section_Explorer\Section_Explorer.csproj", "{4DE6A164-A3B0-4CA9-A979-7B2DB638D5A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sect_ExpEC2", "Sect_ExpEC2\Sect_ExpEC2.csproj", "{7CD060BF-1444-41A3-8DF4-35290E6AB0E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database_Mat", "Database_Mat\Database_Mat.csproj", "{2B90D16E-B3EB-4109-97D8-EAAB85D693B9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2B90D16E-B3EB-4109-97D8-EAAB85D693B9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2B90D16E-B3EB-4109-97D8-EAAB85D693B9}.Debug|x86.Build.0 = Debug|Any CPU
+		{2B90D16E-B3EB-4109-97D8-EAAB85D693B9}.Release|x86.ActiveCfg = Release|Any CPU
+		{2B90D16E-B3EB-4109-97D8-EAAB85D693B9}.Release|x86.Build.0 = Release|Any CPU
+		{482F3E30-7E11-4A24-B98A-713FB6CEB1DC}.Debug|x86.ActiveCfg = Debug|x86
+		{482F3E30-7E11-4A24-B98A-713FB6CEB1DC}.Debug|x86.Build.0 = Debug|x86
+		{482F3E30-7E11-4A24-B98A-713FB6CEB1DC}.Release|x86.ActiveCfg = Release|x86
+		{482F3E30-7E11-4A24-B98A-713FB6CEB1DC}.Release|x86.Build.0 = Release|x86
+		{4DE6A164-A3B0-4CA9-A979-7B2DB638D5A5}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4DE6A164-A3B0-4CA9-A979-7B2DB638D5A5}.Debug|x86.Build.0 = Debug|Any CPU
+		{4DE6A164-A3B0-4CA9-A979-7B2DB638D5A5}.Release|x86.ActiveCfg = Release|Any CPU
+		{4DE6A164-A3B0-4CA9-A979-7B2DB638D5A5}.Release|x86.Build.0 = Release|Any CPU
+		{7CD060BF-1444-41A3-8DF4-35290E6AB0E2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7CD060BF-1444-41A3-8DF4-35290E6AB0E2}.Debug|x86.Build.0 = Debug|Any CPU
+		{7CD060BF-1444-41A3-8DF4-35290E6AB0E2}.Release|x86.ActiveCfg = Release|Any CPU
+		{7CD060BF-1444-41A3-8DF4-35290E6AB0E2}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

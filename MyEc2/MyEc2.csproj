@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{482F3E30-7E11-4A24-B98A-713FB6CEB1DC}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>MyEc2</RootNamespace>
+    <AssemblyName>MyEc2</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Externalconsole>true</Externalconsole>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Externalconsole>true</Externalconsole>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\Sect_ExpEC2\Sect_ExpEC2.csproj">
+      <Project>{7CD060BF-1444-41A3-8DF4-35290E6AB0E2}</Project>
+      <Name>Sect_ExpEC2</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Section_Explorer\Section_Explorer.csproj">
+      <Project>{4DE6A164-A3B0-4CA9-A979-7B2DB638D5A5}</Project>
+      <Name>Section_Explorer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Database_Mat\Database_Mat.csproj">
+      <Project>{2B90D16E-B3EB-4109-97D8-EAAB85D693B9}</Project>
+      <Name>Database_Mat</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

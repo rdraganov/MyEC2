@@ -1,0 +1,7 @@
+C:\Users\n\Documents\Projects\MyEc2\MyEc2\bin\Debug\MyEc2.exe
+C:\Users\n\Documents\Projects\MyEc2\MyEc2\bin\Debug\MyEc2.pdb
+C:\Users\n\Documents\Projects\MyEc2\MyEc2\obj\x86\Debug\MyEc2.exe
+C:\Users\n\Documents\Projects\MyEc2\MyEc2\obj\x86\Debug\MyEc2.pdb
+C:\Users\n\Documents\Projects\MyEc2\MyEc2\bin\Debug\Section_Explorer.dll
+C:\Users\n\Documents\Projects\MyEc2\MyEc2\bin\Debug\Section_Explorer.pdb
+C:\Users\n\Documents\Projects\MyEc2\MyEc2\obj\x86\Debug\MyEc2.csprojResolveAssemblyReference.cache

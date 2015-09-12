@@ -1,0 +1,4 @@
+C:\Users\n\Documents\Projects\MyEc2\MyEc2\bin\Release\MyEc2.exe
+C:\Users\n\Documents\Projects\MyEc2\MyEc2\bin\Release\MyEc2.pdb
+C:\Users\n\Documents\Projects\MyEc2\MyEc2\obj\x86\Release\MyEc2.exe
+C:\Users\n\Documents\Projects\MyEc2\MyEc2\obj\x86\Release\MyEc2.pdb
