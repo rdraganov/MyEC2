@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Section_Explorer;
 using Database_Mat;
+using Sect_ExpEC2;
 
 namespace MyEc2
 {
@@ -27,6 +28,9 @@ namespace MyEc2
 	
 				
 			Section _sec1=new Section(_crd);
+			SBsec _sbs1 = new SBsec (_crd);
+			_sbs1.AddArm (new armGroup (2000, 50,new Stom("B500 B")));
+			_sbs1.AddArm (new armGroup (1000, 120,new Stom("B500 B")));
 			Console.WriteLine ("\nArea: " + _sec1.area + 
 				"\nGravity center: " + _sec1.ycg.ToString ("N2")+
 				"\nMoment of inertia "+ _sec1.Imom.ToString("N0")+"\n\n");

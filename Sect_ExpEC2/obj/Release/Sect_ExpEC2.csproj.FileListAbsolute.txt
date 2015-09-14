@@ -16,3 +16,12 @@ D:\MyEc2\MyEC2\Sect_ExpEC2\bin\Release\Database_Mat.pdb
 D:\MyEc2\MyEC2\Sect_ExpEC2\obj\Release\Sect_ExpEC2.csprojResolveAssemblyReference.cache
 D:\MyEc2\MyEC2\Sect_ExpEC2\obj\Release\Sect_ExpEC2.dll
 D:\MyEc2\MyEC2\Sect_ExpEC2\obj\Release\Sect_ExpEC2.pdb
+D:\MC1\MyEC2\Sect_ExpEC2\bin\Release\Sect_ExpEC2.dll
+D:\MC1\MyEC2\Sect_ExpEC2\bin\Release\Sect_ExpEC2.pdb
+D:\MC1\MyEC2\Sect_ExpEC2\bin\Release\Database_Mat.dll
+D:\MC1\MyEC2\Sect_ExpEC2\bin\Release\Section_Explorer.dll
+D:\MC1\MyEC2\Sect_ExpEC2\bin\Release\Section_Explorer.pdb
+D:\MC1\MyEC2\Sect_ExpEC2\bin\Release\Database_Mat.pdb
+D:\MC1\MyEC2\Sect_ExpEC2\obj\Release\Sect_ExpEC2.csprojResolveAssemblyReference.cache
+D:\MC1\MyEC2\Sect_ExpEC2\obj\Release\Sect_ExpEC2.dll
+D:\MC1\MyEC2\Sect_ExpEC2\obj\Release\Sect_ExpEC2.pdb

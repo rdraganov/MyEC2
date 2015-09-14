@@ -68,7 +68,10 @@ namespace Database_Mat
 			zf_ctk05 = 1.3 * f_ctm;
 			zEcm = 22 * Math.Pow (f_cm / 10, 0.3);
 			eeps_c1 = 0.7 * Math.Pow (f_cm, 0.31);
-			//тук трябва да се прочетат данните и да се заредят променливите
+		}
+
+		public Stress (double _eps, bool _designSitu)
+		{
 
 		}
 	}
@@ -100,6 +103,24 @@ namespace Database_Mat
 			zf_yk = s_data [0, nm];
 			zf_t = s_data [1, nm];
 			eeps_uk = s_data [2, nm];
+		}
+
+		public double Stress(double _eps, bool _desgnSitu)
+		{
+			//_eps е относителното удължение в промили
+			double _k=zf_t/zf_yk;
+			double f = zf_yk;
+			double _eps0 = 0;
+			int znak = (_eps >= 0) ? 1 : -1;
+			if (_desgnSitu) f /= gama_s;
+
+			_eps0 = f / zEs*1000;
+			double grade = zf_yk * (_k - 1) / (eeps_uk - _eps0);
+
+			if (_eps <= _eps0)
+				return znak*_eps * zEs / 1000;
+			else
+				return znak*(f + grade * (_eps - _eps0));
 		}
 
 	}

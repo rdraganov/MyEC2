@@ -18,32 +18,10 @@ namespace Sect_ExpEC2
 			_st=_s;
 		}
 
-		// Изчислява напрежението в армировката в зависимост от отн.деформация
-		public double Stress(double _eps, bool _desgnSitu)
-		{
-			//_eps е относителното удължение в промили
-			double _k=_st.f_t/_st.f_yk;
-			double f = _st.f_yk;
-			double _eps0 = 0;
-			int znak = (_eps >= 0) ? 1 : -1;
-//			int znak = 1;
-//			if (_eps<0){ znak=-1;	_eps = -_eps;	}
-
-			if (_desgnSitu) f /= _st.gama_s;
-
-			_eps0 = f / _st.Es*1000;
-			double grade = _st.f_yk * (_k - 1) / (_st.eps_uk - _eps0);
-				
-			if (_eps <= _eps0)
-				return znak*_eps * _st.Es / 1000;
-			else
-				return znak*(f + grade * (_eps - _eps0));
-		}
-
 		//Изчислява силата в армировката: сила = площ * напрежение
 		public double Force (double _eps,bool _desgnSitu)
 		{
-			return Stress (_eps,_desgnSitu) * _area;
+			return _st.Stress (_eps,_desgnSitu) * _area;
 		}
 	}
 
@@ -67,9 +45,9 @@ namespace Sect_ExpEC2
 
 		public void test()
 		{
-			Console.WriteLine(Mats.MBet.f_ck);
-			Console.WriteLine (Mats.MStom.Es);
-			Console.WriteLine (Mats.MPStom.f_pk);
+			Console.WriteLine("f_ck="+Mats.MBet.f_ck);
+			Console.WriteLine ("Es="+Mats.MStom.Es);
+			Console.WriteLine ("f_pk="+Mats.MPStom.f_pk);
 
 		}
 	}
