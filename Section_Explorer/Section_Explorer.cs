@@ -116,6 +116,11 @@ namespace Section_Explorer
 				return new Section (_nVertx);
 			}
 		}
+
+		public double eps_xc(double _yi,double _x, double _epsc)
+		{
+			return _epsc / _x * (_x - maxY + _yi);
+		}
 	}
 }
 

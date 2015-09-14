@@ -29,13 +29,14 @@ namespace MyEc2
 				
 			Section _sec1=new Section(_crd);
 			SBsec _sbs1 = new SBsec (_crd);
+			_sbs1.SetMats("C20/25", "B500 B", "Y1860S7");
 			_sbs1.AddArm (new armGroup (2000, 50,new Stom("B500 B")));
 			_sbs1.AddArm (new armGroup (1000, 120,new Stom("B500 B")));
-			Console.WriteLine ("\nArea: " + _sec1.area + 
-				"\nGravity center: " + _sec1.ycg.ToString ("N2")+
-				"\nMoment of inertia "+ _sec1.Imom.ToString("N0")+"\n\n");
 
-			Console.WriteLine ("Slicing at y=35, upper part");
+			Console.WriteLine ("Stress sc = "+_sbs1.Mats.MBet.Stress(-1,false,2).ToString("N2")+"\n\n");
+			Console.WriteLine ("deform = "+_sbs1.B_sec.eps_xc(5,20,-3.5)+"\n\n");
+
+			Console.WriteLine ("Slicing at y = 35, upper part");
 			Section _sec2 = _sec1.slice (35, true);
 			Console.WriteLine ("\nArea: " + _sec2.area + 
 				"\nGravity center: " + _sec2.ycg.ToString ("N2")+

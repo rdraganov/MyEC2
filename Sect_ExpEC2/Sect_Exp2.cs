@@ -27,15 +27,18 @@ namespace Sect_ExpEC2
 
 	public class SBsec
 	{
-		private Section B_sec;
+		public Section B_sec;
 		public DataBa Mats ;
 		public List<armGroup> armList=new List<armGroup>();
 
 		public SBsec (List<Point> _vtx)
 		{
 			B_sec= new Section(_vtx);
-			Mats = new DataBa ("C20/25", "B500 B", "Y1860S7");
-			test ();
+		}
+
+		public void SetMats(string _sbet,string _sstom,string _spstom)
+		{
+			Mats = new DataBa (_sbet,_sstom,_spstom);
 		}
 
 		public void AddArm(armGroup _arm)
@@ -43,13 +46,6 @@ namespace Sect_ExpEC2
 			armList.Add (_arm);
 		}
 
-		public void test()
-		{
-			Console.WriteLine("f_ck="+Mats.MBet.f_ck);
-			Console.WriteLine ("Es="+Mats.MStom.Es);
-			Console.WriteLine ("f_pk="+Mats.MPStom.f_pk);
-
-		}
 	}
 }
 

@@ -34,9 +34,9 @@ namespace Database_Mat
 		private string _bcl="";
 		private double zf_ck=0, zf_ck_cube=0, zf_cm=0, zf_ctm=0, zf_ctk05=0, zf_ctk95=0;
 		private double zEcm=0;
-		private double eeps_c1=0, eeps_cu1=3.5;
-		private double eeps_c2=2.0, eeps_cu2=3.5;
-		private double eeps_c3=1.75, eeps_cu3=3.5, nn=2.0;
+		private double eeps_c1=0, eeps_cu1=-3.5;
+		private double eeps_c2=-2.0, eeps_cu2=-3.5;
+		private double eeps_c3=-1.75, eeps_cu3=-3.5, nn=2.0;
 
 		public double gama_c=1.5;
 		public double f_ck 		{get {return zf_ck;}}
@@ -70,12 +70,35 @@ namespace Database_Mat
 			eeps_c1 = 0.7 * Math.Pow (f_cm, 0.31);
 		}
 
-		public Stress (double _eps, bool _designSitu)
+		//Изчисляване на напрежението в бетона при зададено отн.деформация
+		public double Stress (double _eps, bool _designSitu, int _typDia)
 		{
-
+			double tempF = 0;
+			if (_eps > 0) return 0;
+			switch (_typDia) {
+			//Параболично-линейна диаграма
+			case 2:
+				{
+					if (_eps < eeps_c2)	tempF = -zf_ck;
+					else tempF = -zf_ck*(1-Math.Pow(1-_eps/eeps_c2,nn));
+					break;
+				}
+			//Билинейна диаграма
+			case 3:
+				{
+					if (_eps < eeps_c3)	tempF = - zf_ck;
+					else tempF = zf_ck*(_eps/eeps_c3);
+					break;
+				}
+			default: return 0;
+			}
+			//Изчислителна ситуация
+			if (_designSitu) tempF/=gama_c;
+			return tempF;
 		}
 	}
 
+	//Клас за характеристики на обикновената армировка
 	public class Stom
 	{
 		private string _scl="";
@@ -105,6 +128,7 @@ namespace Database_Mat
 			eeps_uk = s_data [2, nm];
 		}
 
+		//Изчисляване на напрежението в амрировката при зададено отн.деформация
 		public double Stress(double _eps, bool _desgnSitu)
 		{
 			//_eps е относителното удължение в промили
@@ -125,6 +149,7 @@ namespace Database_Mat
 
 	}
 
+	//Клас за характеристики на напрегнатата армировка
 	public class PStom
 	{
 		public static List<string> _sPclassL = new List<string> { "Y1860S7" };
