@@ -40,5 +40,9 @@
       <Project>{4DE6A164-A3B0-4CA9-A979-7B2DB638D5A5}</Project>
       <Name>Section_Explorer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Database_Mat\Database_Mat.csproj">
+      <Project>{2B90D16E-B3EB-4109-97D8-EAAB85D693B9}</Project>
+      <Name>Database_Mat</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

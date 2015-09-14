@@ -25,12 +25,12 @@ namespace Section_Explorer
 	public class Section
 	{
 		private int _n = 0;
-		private List<Point> _vertex=new List<Point>();
-		private double _area;	// площ
-		private double _ycg; 	// у на центъра на тежестта
-		private double _Imom; 	// инерционен момент
-		private double _maxY=0;	// максимална ордината
-		private double _minY=0; // минимална ордината
+		private List<Point> _vertex = new List<Point>();
+		private double _area;	// площ *** area
+		private double _ycg; 	// у на центъра на тежестта   *** COG y-ordinate
+		private double _Imom; 	// инерционен момент second moment of inertia x-x
+		private double _maxY=0;	// максимална ордината *** max ordinate y
+		private double _minY=0; // минимална ордината *** min ordinate y
 
 		public double area  { get { return _area; } }
 		public double minY	{ get { return _minY; } }

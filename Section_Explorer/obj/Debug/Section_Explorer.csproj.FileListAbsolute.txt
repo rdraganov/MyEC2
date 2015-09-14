@@ -2,3 +2,11 @@ C:\Users\n\Documents\Projects\MyEc2\Section_Explorer\bin\Debug\Section_Explorer.
 C:\Users\n\Documents\Projects\MyEc2\Section_Explorer\bin\Debug\Section_Explorer.pdb
 C:\Users\n\Documents\Projects\MyEc2\Section_Explorer\obj\Debug\Section_Explorer.dll
 C:\Users\n\Documents\Projects\MyEc2\Section_Explorer\obj\Debug\Section_Explorer.pdb
+D:\MyEc2\Section_Explorer\bin\Debug\Section_Explorer.dll
+D:\MyEc2\Section_Explorer\bin\Debug\Section_Explorer.pdb
+D:\MyEc2\Section_Explorer\obj\Debug\Section_Explorer.dll
+D:\MyEc2\Section_Explorer\obj\Debug\Section_Explorer.pdb
+D:\MyEc2\MyEC2\Section_Explorer\bin\Debug\Section_Explorer.dll
+D:\MyEc2\MyEC2\Section_Explorer\bin\Debug\Section_Explorer.pdb
+D:\MyEc2\MyEC2\Section_Explorer\obj\Debug\Section_Explorer.dll
+D:\MyEc2\MyEC2\Section_Explorer\obj\Debug\Section_Explorer.pdb

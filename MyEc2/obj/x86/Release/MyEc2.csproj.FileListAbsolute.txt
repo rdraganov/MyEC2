@@ -2,3 +2,14 @@ C:\Users\n\Documents\Projects\MyEc2\MyEc2\bin\Release\MyEc2.exe
 C:\Users\n\Documents\Projects\MyEc2\MyEc2\bin\Release\MyEc2.pdb
 C:\Users\n\Documents\Projects\MyEc2\MyEc2\obj\x86\Release\MyEc2.exe
 C:\Users\n\Documents\Projects\MyEc2\MyEc2\obj\x86\Release\MyEc2.pdb
+D:\MyEc2\MyEC2\MyEc2\bin\Release\MyEc2.exe
+D:\MyEc2\MyEC2\MyEc2\bin\Release\MyEc2.pdb
+D:\MyEc2\MyEC2\MyEc2\bin\Release\Database_Mat.dll
+D:\MyEc2\MyEC2\MyEc2\bin\Release\Section_Explorer.dll
+D:\MyEc2\MyEC2\MyEc2\bin\Release\Sect_ExpEC2.dll
+D:\MyEc2\MyEC2\MyEc2\bin\Release\Sect_ExpEC2.pdb
+D:\MyEc2\MyEC2\MyEc2\bin\Release\Section_Explorer.pdb
+D:\MyEc2\MyEC2\MyEc2\bin\Release\Database_Mat.pdb
+D:\MyEc2\MyEC2\MyEc2\obj\x86\Release\MyEc2.csprojResolveAssemblyReference.cache
+D:\MyEc2\MyEC2\MyEc2\obj\x86\Release\MyEc2.exe
+D:\MyEc2\MyEC2\MyEc2\obj\x86\Release\MyEc2.pdb

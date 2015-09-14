@@ -5,3 +5,14 @@ C:\Users\n\Documents\Projects\MyEc2\MyEc2\obj\x86\Debug\MyEc2.pdb
 C:\Users\n\Documents\Projects\MyEc2\MyEc2\bin\Debug\Section_Explorer.dll
 C:\Users\n\Documents\Projects\MyEc2\MyEc2\bin\Debug\Section_Explorer.pdb
 C:\Users\n\Documents\Projects\MyEc2\MyEc2\obj\x86\Debug\MyEc2.csprojResolveAssemblyReference.cache
+D:\MyEc2\MyEC2\MyEc2\obj\x86\Debug\MyEc2.csprojResolveAssemblyReference.cache
+D:\MyEc2\MyEC2\MyEc2\obj\x86\Debug\MyEc2.exe
+D:\MyEc2\MyEC2\MyEc2\obj\x86\Debug\MyEc2.pdb
+D:\MyEc2\MyEC2\MyEc2\bin\Debug\MyEc2.exe
+D:\MyEc2\MyEC2\MyEc2\bin\Debug\MyEc2.pdb
+D:\MyEc2\MyEC2\MyEc2\bin\Debug\Database_Mat.dll
+D:\MyEc2\MyEC2\MyEc2\bin\Debug\Section_Explorer.dll
+D:\MyEc2\MyEC2\MyEc2\bin\Debug\Sect_ExpEC2.dll
+D:\MyEc2\MyEC2\MyEc2\bin\Debug\Sect_ExpEC2.pdb
+D:\MyEc2\MyEC2\MyEc2\bin\Debug\Section_Explorer.pdb
+D:\MyEc2\MyEC2\MyEc2\bin\Debug\Database_Mat.pdb

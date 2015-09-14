@@ -8,8 +8,7 @@ namespace MyEc2
 	class MainClass
 	{
 		//Дефиниране на библиотеки
-		DataBa.Stom mist=new DataBa.Stom("B500 B");
-		DataBa.Bet mbet = new DataBa.Bet ("C25/30");
+
 
 		//public Section_Explorer sExp=new Section_Explorer();
 

@@ -1,11 +1,11 @@
 ﻿<Properties StartupItem="MyEc2\MyEc2.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Database_Mat\DataMat.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Sect_ExpEC2\Sect_Exp2.cs">
     <Files>
-      <File FileName="MyEc2\Program.cs" Line="12" Column="30" />
-      <File FileName="Section_Explorer\Section_Explorer.cs" Line="5" Column="2" />
-      <File FileName="Sect_ExpEC2\Sect_Exp2.cs" Line="10" Column="3" />
-      <File FileName="Database_Mat\DataMat.cs" Line="109" Column="19" />
+      <File FileName="MyEc2\Program.cs" Line="7" Column="2" />
+      <File FileName="Section_Explorer\Section_Explorer.cs" Line="21" Column="27" />
+      <File FileName="Sect_ExpEC2\Sect_Exp2.cs" Line="29" Column="19" />
+      <File FileName="Database_Mat\DataMat.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

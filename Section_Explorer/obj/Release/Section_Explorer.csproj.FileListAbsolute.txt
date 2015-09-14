@@ -1,0 +1,8 @@
+D:\MyEc2\Section_Explorer\bin\Release\Section_Explorer.dll
+D:\MyEc2\Section_Explorer\bin\Release\Section_Explorer.pdb
+D:\MyEc2\Section_Explorer\obj\Release\Section_Explorer.dll
+D:\MyEc2\Section_Explorer\obj\Release\Section_Explorer.pdb
+D:\MyEc2\MyEC2\Section_Explorer\bin\Release\Section_Explorer.dll
+D:\MyEc2\MyEC2\Section_Explorer\bin\Release\Section_Explorer.pdb
+D:\MyEc2\MyEC2\Section_Explorer\obj\Release\Section_Explorer.dll
+D:\MyEc2\MyEC2\Section_Explorer\obj\Release\Section_Explorer.pdb

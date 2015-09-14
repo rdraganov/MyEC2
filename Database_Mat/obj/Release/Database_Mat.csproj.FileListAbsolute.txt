@@ -1,0 +1,8 @@
+D:\MyEc2\Database_Mat\bin\Release\Database_Mat.dll
+D:\MyEc2\Database_Mat\bin\Release\Database_Mat.pdb
+D:\MyEc2\Database_Mat\obj\Release\Database_Mat.dll
+D:\MyEc2\Database_Mat\obj\Release\Database_Mat.pdb
+D:\MyEc2\MyEC2\Database_Mat\bin\Release\Database_Mat.dll
+D:\MyEc2\MyEC2\Database_Mat\bin\Release\Database_Mat.pdb
+D:\MyEc2\MyEC2\Database_Mat\obj\Release\Database_Mat.dll
+D:\MyEc2\MyEC2\Database_Mat\obj\Release\Database_Mat.pdb
