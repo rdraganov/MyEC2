@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace Section_Explorer
 {
+	/// <summary>
+	/// Клас за точка
+	/// </summary>
 	public class Point
 	{
 		private double[] coordinates;
@@ -22,12 +25,16 @@ namespace Section_Explorer
 		}
 	}
 
+	/// <summary>
+	/// Клас за геометрична фигура с вертикална ос на симетрия
+	/// </summary>
 	public class Section
 	{
 		private int _n = 0;
 		private List<Point> _vertex = new List<Point>();
 		private double _area;	// площ *** area
 		private double _ycg; 	// у на центъра на тежестта   *** COG y-ordinate
+		private double _Smom;   // статичен момент
 		private double _Imom; 	// инерционен момент second moment of inertia x-x
 		private double _maxY=0;	// максимална ордината *** max ordinate y
 		private double _minY=0; // минимална ордината *** min ordinate y
@@ -36,9 +43,13 @@ namespace Section_Explorer
 		public double minY	{ get { return _minY; } }
 		public double maxY	{ get { return _maxY; } }
 		public double ycg	{ get {return _ycg;	  } }
+		public double Smom  { get {return _Smom;  } }
 		public double Imom  { get {return _Imom;  } }
 
-
+		/// <summary>
+		/// Конструктор
+		/// </summary>
+		/// <param name="_vtx">Координати на сечението отдясно на оста на симетрия</param>
 		public Section(List<Point> _vtx)  //конструктор
 		{
 			_n = _vtx.Count;
@@ -57,34 +68,35 @@ namespace Section_Explorer
 			if (Math.Abs(_vtx [_vtx.Count-1].XCoord)>1e-6) _vertex.Add(new Point (0, _vtx [_vtx.Count-1].YCoord));
 			_n = _vertex.Count;
 			_area = calcArea();		// изчисляване на площта
-			_ycg = calcSmom() / _area; // център на тежестта
+			_Smom = calcSmom();
+			_ycg = _Smom / _area; // център на тежестта
 			_Imom = calcImom ()-_area*_ycg*_ycg;  //инерционен момент за главната ос х
 		}
 
 		private enum geoType{areaT=0,smomT,imomT};  //типове геометрични характеристики
 
-		private double FGeom(Point p1, Point p2, int typ)	//формули за геометрични характеристики
+		private double FGeom(Point p1, Point p2, geoType typ)	//формули за геометрични характеристики
 		{
-			switch ((int)typ) 
+			switch (typ) 
 			{
-			case 0:	{ return p1.XCoord*p2.YCoord-p2.XCoord*p1.YCoord;	}
-			case 1:	{ return (p1.XCoord * p2.YCoord - p2.XCoord * p1.YCoord) * (p1.YCoord + p2.YCoord)/3;}
-			case 2:	{ return (p1.XCoord * p2.YCoord - p2.XCoord * p1.YCoord) * (Math.Pow(p1.YCoord + p2.YCoord,2) - p1.YCoord * p2.YCoord)/6;	}
+			case geoType.areaT:	{ return p1.XCoord*p2.YCoord-p2.XCoord*p1.YCoord;	}
+			case geoType.smomT:	{ return (p1.XCoord * p2.YCoord - p2.XCoord * p1.YCoord) * (p1.YCoord + p2.YCoord)/3;}
+			case geoType.imomT:	{ return (p1.XCoord * p2.YCoord - p2.XCoord * p1.YCoord) * (Math.Pow(p1.YCoord + p2.YCoord,2) - p1.YCoord * p2.YCoord)/6;	}
 			default:{return 0;}
 			}
 				
 		}
 
-		private double calcGeom(int typ) //цикъл за обхождане
+		private double calcGeom(geoType typ) //цикъл за обхождане
 		{
 			double _S = FGeom(_vertex [_n - 1], _vertex [0] , typ);
 			for (int i = 0; i < _n-1; i++) 	_S+=FGeom(_vertex [i], _vertex [i+1],typ);
 			return _S;
 		}
 
-		private double calcArea()	{ return Math.Abs(calcGeom((int)geoType.areaT));	} //площ
-		private double calcSmom()	{ return calcGeom((int)geoType.smomT);				} //статичен момент
-		private double calcImom ()	{ return calcGeom((int)geoType.imomT);				} //инерционен момент
+		private double calcArea()	{ return Math.Abs(calcGeom(geoType.areaT));	} //площ
+		private double calcSmom()	{ return calcGeom(geoType.smomT);				} //статичен момент
+		private double calcImom ()	{ return calcGeom(geoType.imomT);				} //инерционен момент
 
 		public Section slice(double _h, bool up) //отрязване на ниво _h, взема се горната част up=true или долната up=false
 		{
@@ -116,11 +128,56 @@ namespace Section_Explorer
 				return new Section (_nVertx);
 			}
 		}
-
+		//изчисляване на деформация по нулева линия и скъсяване горен ръб
 		public double eps_xc(double _yi,double _x, double _epsc)
 		{
-			return _epsc / _x * (_x - maxY + _yi);
+			return _epsc / _x * (_x - _maxY + _yi);
 		}
+		//изчисляване на деформация по нулева линия и удължаване долен ръб
+		public double eps_xs(double _yi,double _x, double _epss)
+		{
+			return _epss /((_maxY-_minY)-_x) * (_maxY - _x - _yi);
+		}
+
+		public static List<Point> deltaSec = new List<Point> ();
+		public List<Point> ddSec {get{return deltaSec;}}
+
+		/// <summary> Конструктор на клас AnalyseSec </summary>
+		/// <param name="_sec">Section</param>
+		/// <param name="_n">брой части</param>
+		public void AnalyseSec(int _n)
+		{
+			double _dy = (_maxY - _minY) / _n;
+			Section _tmpSec;
+
+			//test variables
+			double _tmpA = 0, _tmpS = 0, _tmpI = 0;
+
+
+			for (int i = 0; i < _n; i++) 
+			{
+				_tmpSec = slice (_maxY - ( i + 1 ) * _dy, true).slice(_maxY - i * _dy, false);
+				deltaSec.Add (new Point(_tmpSec.area, _tmpSec.ycg));
+				//test rows
+				_tmpA += _tmpSec.area;
+				_tmpS += _tmpSec.area * _tmpSec.ycg;
+				_tmpI += _tmpSec.Imom+_tmpSec.area * _tmpSec.ycg * _tmpSec.ycg;
+
+			}
+			//test rows
+			Console.WriteLine ("Area analysed = " + _tmpA.ToString("N2")+"   Area real = "+_area.ToString("N2"));
+			Console.WriteLine ("Static moment analysed = " + _tmpS.ToString("N2")+"   Static moment real = "+_Smom.ToString("N2"));
+			_tmpI -= _tmpA * Math.Pow (_tmpS / _tmpA, 2);	
+			Console.WriteLine ("Moment II analysed = " + _tmpI.ToString("N2")+"   Moment II real = "+_Imom.ToString("N2"));
+			//			foreach  (Point p_ in deltaSec)
+			//			{
+			//				Console.WriteLine("delta Area = "+p_.XCoord.ToString("N2")+"  ord y = "+p_.YCoord.ToString("N2"));
+			//			}
+		}
+
+
 	}
+
+
 }
 
