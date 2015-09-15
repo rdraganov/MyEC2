@@ -77,22 +77,24 @@ namespace Sect_ExpEC2
 
 
 			
-			public List<Point> AnalyseStress(double _x, double _ec, List<Point> _lst)
+		public void AnalyseStress(double _x, double _ec, List<Point> _lst,
+						out double bF, out double bM)
+		{
+			double y=0;
+			double _sig=0;
+			double bForce = 0;
+			double bMoment = 0;
+			for (int i=0; i<_lst.Count; i++)
 			{
-				List<Point> Lstress = new List<Point> ();
-				double y=0;
-				double _sig=0;
-				for (int i=0; i<_lst.Count; i++)
-				{
-					y=_lst[i].YCoord; //y координата на дискретната площ
-					_sig=Mats.MBet.Stress(B_sec.eps_xc(y,_x,_ec),true,2);
-					Lstress.Add(new Point(y,_sig));
-				Console.WriteLine("Stress (y= "+y.ToString("N2")+ ") = "+_sig.ToString("N2"));
-						
-				}
-			return Lstress;
+				y=_lst[i].YCoord; //y координата на дискретната площ
+				_sig=Mats.MBet.Stress(B_sec.eps_xc(y,_x,_ec),true,2);
+				bForce += _sig * _lst [i].XCoord/10;
+				bMoment -=_sig*_lst[i].XCoord * (y - B_sec.ycg)/1000;
 			}
-		
+			bF = bForce;
+			bM = bMoment;		
+		}
+	
 
 	}
 }

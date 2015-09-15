@@ -2,26 +2,11 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Sect_ExpEC2\Sect_Exp2.cs">
     <Files>
-      <File FileName="MyEc2\Program.cs" Line="46" Column="58" />
-      <File FileName="Sect_ExpEC2\Sect_Exp2.cs" Line="73" Column="36" />
-      <File FileName="Database_Mat\DataMat.cs" Line="74" Column="25" />
-      <File FileName="Section_Explorer\Section_Integra.cs" Line="25" Column="2" />
-      <File FileName="Section_Explorer\Section_Explorer.cs" Line="144" Column="3" />
+      <File FileName="MyEc2\Program.cs" Line="39" Column="49" />
+      <File FileName="Sect_ExpEC2\Sect_Exp2.cs" Line="95" Column="17" />
+      <File FileName="Database_Mat\DataMat.cs" Line="130" Column="3" />
+      <File FileName="Section_Explorer\Section_Explorer.cs" Line="10" Column="3" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="MyEc2" expanded="True">
-            <Node name="Database_Mat" expanded="True" />
-            <Node name="MyEc2" expanded="True" />
-            <Node name="Sect_ExpEC2" expanded="True">
-              <Node name="Sect_Exp2.cs" selected="True" />
-            </Node>
-            <Node name="Section_Explorer" expanded="True" />
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

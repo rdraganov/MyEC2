@@ -24,7 +24,7 @@ namespace MyEc2
 			_crd.Add(new Point (7.5, 105));
 			_crd.Add(new Point (37.5, 110));
 			_crd.Add(new Point (37.5, 125));
-			//_crd.Add(new Point (0, 130));
+			//_crd.Add(new Point (0, 125));
 	
 				
 			Section _sec1=new Section(_crd);
@@ -33,8 +33,10 @@ namespace MyEc2
 			_sbs1.SetMats("C20/25", "B500 B", "Y1860S7");
 			_sbs1.AddArm (new armGroup (2000, 50,new Stom("B500 B")));
 			_sbs1.AddArm (new armGroup (1000, 120,new Stom("B500 B")));
-			_sbs1.AnalyseStress (10, -3.5, _sec1.ddSec);
-
+			double F1 = 0, M1 = 0;
+			_sbs1.AnalyseStress (10, -3.5, _sec1.ddSec,out F1,out M1);
+			Console.WriteLine ("F bet = "+F1.ToString("N2")+"\n\n");
+			Console.WriteLine ("M bet = "+M1.ToString("N2")+"\n\n");
 
 			//Тестване
 //			Console.WriteLine ("Stress sc = "+_sbs1.Mats.MBet.Stress(-1,false,2).ToString("N2")+"\n\n");
