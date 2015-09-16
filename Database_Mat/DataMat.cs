@@ -81,9 +81,10 @@ namespace Database_Mat
 			//Параболично-линейна диаграма
 			case bsx.bsx1:
 				{
+					//if _eps>
 					double eta = _eps / eeps_c1;
 					double k = 1.05 * zEcm * eeps_c1 / zf_cm;
-					double tempF = (k * eta - eta * eta) / (1 + (k - 2) * eta);
+					tempF = (k * eta - eta * eta) / (1 + (k - 2) * eta);
 					return tempF;
 					break;
 				}
