@@ -5,21 +5,14 @@ using Database_Mat;
 
 namespace Sect_ExpEC2
 {
-	/// <summary>
-	/// Група армировки, разглеждани като една
-	/// </summary>
+	
 	public class armGroup
 	{
 		public double _area = 0;
 		public double _ydis = 0;
-		private Stom _st;
+		public Stom _st;
 
-		/// <summary>
-		/// Конструктор <see cref="Sect_ExpEC2.armGroup"/> class.
-		/// </summary>
-		/// <param name="_a">Площ на сечението</param>
-		/// <param name="_y">Ордината на центъра на тежестта</param>
-		/// <param name="_s">Тип на армировката</param>
+
 		public armGroup (double _a, double _y, Stom _s)
 		{
 			_area = _a;
@@ -27,49 +20,28 @@ namespace Sect_ExpEC2
 			_st=_s;
 		}
 
-		/// <summary>
-		/// Изчислява силата в армировката в зависимост от деформацията
-		/// </summary>
-		/// <param name="_eps">Деформация в промили</param>
-		/// <param name="_desgnSitu">Ако е <c>true</c> - изчислителна ситуация.</param>
-		public double Force (double _eps,bool _desgnSitu)
+
+		public double Force (double _eps,bool _desgnSitu, Stom.ssx _typD )
 		{
-			return _st.Stress (_eps,_desgnSitu) * _area;
+			return _st.Stress (_eps,_desgnSitu,_typD) * _area;
 		}
 	}
 
-	/// <summary>
-	/// Клас за стоманобетоново сечение
-	/// </summary>
+
 	public class SBsec
 	{
 		public static Section B_sec;
-		public static DataBa Mats ;
+		public static Bet _bet ;
 		public List<armGroup> armList=new List<armGroup>();
 
-		/// <summary>
-		/// Конструктор
-		/// </summary>
-		/// <param name="_vtx">координати на бетоновото сечение</param>
-		public SBsec (List<Point> _vtx)
+
+		public SBsec (List<Point> _vtx, string _betS)
 		{
 			B_sec= new Section(_vtx);
+			_bet = new Bet (_betS);
 		}
+			
 
-		/// <summary>
-		/// Задаване на материали
-		/// </summary>
-		/// <param name="_sbet">Бетон</param>
-		/// <param name="_sstom">Обикновена армировка</param>
-		/// <param name="_spstom">Напрегната армировка</param>
-		public void SetMats(string _sbet,string _sstom,string _spstom)
-		{
-			Mats = new DataBa (_sbet,_sstom,_spstom);
-		}
-		/// <summary>
-		/// Добавя армировка
-		/// </summary>
-		/// <param name="_arm">Добавя група армировки</param>
 		public void AddArm(armGroup _arm)
 		{
 			armList.Add (_arm);
@@ -77,7 +49,7 @@ namespace Sect_ExpEC2
 
 
 			
-		public void AnalyseStress(double _x, double _ec, List<Point> _lst,
+		public void AnalyseStress(double _x, double _ec, List<Point> _lst, Bet.bsx _typD,
 						out double bF, out double bM)
 		{
 			double y=0;
@@ -87,12 +59,28 @@ namespace Sect_ExpEC2
 			for (int i=0; i<_lst.Count; i++)
 			{
 				y=_lst[i].YCoord; //y координата на дискретната площ
-				_sig=Mats.MBet.Stress(B_sec.eps_xc(y,_x,_ec),true,2);
+				_sig=_bet.Stress(B_sec.eps_xc(y,_x,_ec),true,_typD);
 				bForce += _sig * _lst [i].XCoord/10;
 				bMoment -=_sig*_lst[i].XCoord * (y - B_sec.ycg)/1000;
 			}
 			bF = bForce;
 			bM = bMoment;		
+		}
+
+		public void AnalyseStressArm(double _x, double _ec, Stom.ssx _typD,
+						out double aF, out double aM)
+		{
+			double _sig = 0;
+			double aForce = 0, aMoment = 0;
+			foreach (armGroup ar1 in armList) 
+			{
+				_sig = ar1._st.Stress (B_sec.eps_xc (ar1._ydis, _x, _ec), true,_typD);
+				Console.WriteLine ("eps = "+ B_sec.eps_xc (ar1._ydis, _x, _ec) +"   arm sig = " + _sig.ToString("N2")+"\n");
+				aForce += _sig * ar1._area / 10;
+				aMoment -= _sig * ar1._area * (ar1._ydis - B_sec.ycg) / 1000;
+			}
+			aF = aForce;
+			aM = aMoment;
 		}
 	
 

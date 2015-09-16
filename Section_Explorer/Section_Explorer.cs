@@ -3,9 +3,6 @@ using System.Collections.Generic;
 
 namespace Section_Explorer
 {
-	/// <summary>
-	/// Клас за точка
-	/// </summary>
 	public class Point
 	{
 		private double[] coordinates;
@@ -45,6 +42,7 @@ namespace Section_Explorer
 		public double ycg	{ get {return _ycg;	  } }
 		public double Smom  { get {return _Smom;  } }
 		public double Imom  { get {return _Imom;  } }
+		public List<Point> vertex {get { return _vertex; }}
 
 		/// <summary>
 		/// Конструктор
@@ -71,6 +69,22 @@ namespace Section_Explorer
 			_Smom = calcSmom();
 			_ycg = _Smom / _area; // център на тежестта
 			_Imom = calcImom ()-_area*_ycg*_ycg;  //инерционен момент за главната ос х
+		}
+
+		public Section(double a, double b)
+		{
+			_n = 4;
+			_minY = 0;
+			_maxY = b;
+			_vertex.Add (new Point ( 0, 0 ));
+			_vertex.Add (new Point ( 0.5 * a, 0 ));
+			_vertex.Add (new Point ( 0.5 * a, b ));
+			_vertex.Add (new Point ( 0, b ));
+			_area = a * b;
+			_Smom = _area * b / 2;
+			_ycg = b / 2;
+			_Imom = a * b * b * b / 12;
+
 		}
 
 		private enum geoType{areaT=0,smomT,imomT};  //типове геометрични характеристики
@@ -165,10 +179,10 @@ namespace Section_Explorer
 
 			}
 			//test rows
-			Console.WriteLine ("Area analysed = " + _tmpA.ToString("N2")+"   Area real = "+_area.ToString("N2"));
-			Console.WriteLine ("Static moment analysed = " + _tmpS.ToString("N2")+"   Static moment real = "+_Smom.ToString("N2"));
-			_tmpI -= _tmpA * Math.Pow (_tmpS / _tmpA, 2);	
-			Console.WriteLine ("Moment II analysed = " + _tmpI.ToString("N2")+"   Moment II real = "+_Imom.ToString("N2"));
+			//Console.WriteLine ("Area analysed = " + _tmpA.ToString("N2")+"   Area real = "+_area.ToString("N2"));
+			//Console.WriteLine ("Static moment analysed = " + _tmpS.ToString("N2")+"   Static moment real = "+_Smom.ToString("N2"));
+			//_tmpI -= _tmpA * Math.Pow (_tmpS / _tmpA, 2);	
+			//Console.WriteLine ("Moment II analysed = " + _tmpI.ToString("N2")+"   Moment II real = "+_Imom.ToString("N2"));
 			//			foreach  (Point p_ in deltaSec)
 			//			{
 			//				Console.WriteLine("delta Area = "+p_.XCoord.ToString("N2")+"  ord y = "+p_.YCoord.ToString("N2"));

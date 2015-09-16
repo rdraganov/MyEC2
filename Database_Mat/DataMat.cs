@@ -13,9 +13,9 @@ namespace Database_Mat
 		//Конструктор
 		public DataBa(string bc_, string ac_,string pac_)
 		{
-			MyBet=new Bet (bc_);
+			MyBet = new Bet (bc_);
 			MyStom = new Stom (ac_);
-			MyPStom=new PStom(pac_);
+			MyPStom = new PStom(pac_);
 		}
 
 		public Bet MBet {get {return MyBet;}}
@@ -30,6 +30,8 @@ namespace Database_Mat
 		private double[,] b_data=new double[2,9] 
 			{{12,16,20,25,30,35,40,45,50},
 			{15,20,25,30,37,45,50,55,60}};
+		
+		public enum bsx{bsx1=1,bsx2=2,bsx3=3}; //възможни диаграми напрежение-деформация
 
 		private string _bcl="";
 		private double zf_ck=0, zf_ck_cube=0, zf_cm=0, zf_ctm=0, zf_ctk05=0, zf_ctk95=0;
@@ -71,23 +73,32 @@ namespace Database_Mat
 		}
 
 		//Изчисляване на напрежението в бетона при зададено отн.деформация
-		public double Stress (double _eps, bool _designSitu, int _typDia)
+		public double Stress (double _eps, bool _designSitu, Bet.bsx _typDia)
 		{
 			double tempF = 0;
 			if (_eps > 0) return 0;
 			switch (_typDia) {
 			//Параболично-линейна диаграма
-			case 2:
+			case bsx.bsx1:
+				{
+					double eta = _eps / eeps_c1;
+					double k = 1.05 * zEcm * eeps_c1 / zf_cm;
+					double tempF = (k * eta - eta * eta) / (1 + (k - 2) * eta);
+					return tempF;
+					break;
+				}
+
+			case bsx.bsx2:
 				{
 					if (_eps < eeps_c2)	tempF = -zf_ck;
 					else tempF = -zf_ck*(1-Math.Pow(1-_eps/eeps_c2,nn));
 					break;
 				}
 			//Билинейна диаграма
-			case 3:
+			case bsx.bsx3:
 				{
 					if (_eps < eeps_c3)	tempF = - zf_ck;
-					else tempF = zf_ck*(_eps/eeps_c3);
+					else tempF = -zf_ck*(_eps/eeps_c3);
 					break;
 				}
 			default: return 0;
@@ -102,10 +113,13 @@ namespace Database_Mat
 	public class Stom
 	{
 		private string _scl="";
+
+		public enum ssx{ssx1=1,ssx2=2}; //възможни диаграми напрежение-деформация
+
 		public static List<string> _sclassL = new List<string> {"B235","B420 B","B420 C","B500 A","B500 B","B500 C"};
 		private double[,] s_data=new double[3,6] {{235,420,420,500,500,500},
 												  {370,460,500,550,550,575},
-												  {2.5,5.0,8.0,82.5,5.0,7.5}};
+												  {25,50,80,25,50,75}};
 		private double zf_yk=0, zf_t=0;   //табл.4 БДС 9252:2007 табл.2 БДС 4758:2008
 		private double zEs=200000;
 		private double eeps_uk = 0;
@@ -129,18 +143,20 @@ namespace Database_Mat
 		}
 
 		//Изчисляване на напрежението в амрировката при зададено отн.деформация
-		public double Stress(double _eps, bool _desgnSitu)
+		public double Stress(double _eps, bool _desgnSitu, ssx _typDia)
 		{
 			//_eps е относителното удължение в промили
+			if (!_desgnSitu && _eps>eeps_uk || _desgnSitu && _eps>0.9*eeps_uk) return 0;
 			double _k=zf_t/zf_yk;
 			double f = zf_yk;
 			double _eps0 = 0;
 			int znak = (_eps >= 0) ? 1 : -1;
+			_eps = Math.Abs (_eps);
 			if (_desgnSitu) f /= gama_s;
 
 			_eps0 = f / zEs*1000;
-			double grade = zf_yk * (_k - 1) / (eeps_uk - _eps0);
-
+			double grade = 0;
+			if (_typDia == ssx.ssx2) grade = zf_yk * (_k - 1) / (eeps_uk - _eps0);
 			if (_eps <= _eps0)
 				return znak*_eps * zEs / 1000;
 			else
