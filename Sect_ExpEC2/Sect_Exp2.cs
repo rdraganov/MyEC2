@@ -68,7 +68,7 @@ namespace Sect_ExpEC2
 				bForce += _sig * _lst [i].XCoord/10;
 				bMoment -=_sig*_lst[i].XCoord * (y - ycg)/1000;
 			}
-			Console.WriteLine ("Force="+bForce.ToString("N2"));
+			//Console.WriteLine ("Force="+bForce.ToString("N2"));
 			bF = bForce;
 			bM = bMoment;		
 		}

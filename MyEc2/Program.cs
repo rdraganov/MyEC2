@@ -31,7 +31,7 @@ namespace MyEc2
 			SBsec _sbs1 = new SBsec (_sec1.vertex,"C25/30");
 			_sec1.AnalyseSec(256);
 
-			_sbs1.AddArm (new armGroup (10, 5,new Stom("B500 B")));
+			_sbs1.AddArm (new armGroup (30, 5,new Stom("B500 B")));
 			_sbs1.AddArm (new armGroup (10, 45,new Stom("B500 B")));
 
 			//Тестове
