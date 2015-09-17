@@ -142,23 +142,21 @@ namespace Section_Explorer
 				return new Section (_nVertx);
 			}
 		}
-		//изчисляване на деформация по нулева линия и скъсяване горен ръб
-		public double eps_xc(double _yi,double _x, double _epsc)
-		{
-			return _epsc / _x * (_x - _maxY + _yi);
-		}
-		//изчисляване на деформация по нулева линия и удължаване долен ръб
-		public double eps_xs(double _yi,double _x, double _epss)
-		{
-			return _epss /((_maxY-_minY)-_x) * (_maxY - _x - _yi);
-		}
+//		//изчисляване на деформация в ордината у по нулева линия х и скъсяване горен ръб eps_c
+//		public double eps_xc(double _yi,double _x, double _epsc)
+//		{	return _epsc / _x * (_x - _maxY + _yi);		}
+//
+//		//изчисляване на деформация в ордината у по нулева линия х и удължаване долен ръб eps_s
+//		public double eps_xs(double _yi,double _x, double _epss)
+//		{	return _epss /((_maxY-_minY)-_x) * (_maxY - _x - _yi);		}
+
+		//изчисляване на деформация в ордината у по зададени два ръба eps_c и eps_s
+		public double eps_cs(double _yi,double _epsc, double _epss)
+		{	return _epss + (_epsc-_epss)/(_maxY-_minY) * (_yi-_minY);		}
 
 		public static List<Point> deltaSec = new List<Point> ();
 		public List<Point> ddSec {get{return deltaSec;}}
 
-		/// <summary> Конструктор на клас AnalyseSec </summary>
-		/// <param name="_sec">Section</param>
-		/// <param name="_n">брой части</param>
 		public void AnalyseSec(int _n)
 		{
 			double _dy = (_maxY - _minY) / _n;
@@ -166,7 +164,6 @@ namespace Section_Explorer
 
 			//test variables
 			double _tmpA = 0, _tmpS = 0, _tmpI = 0;
-
 
 			for (int i = 0; i < _n; i++) 
 			{
@@ -176,22 +173,8 @@ namespace Section_Explorer
 				_tmpA += _tmpSec.area;
 				_tmpS += _tmpSec.area * _tmpSec.ycg;
 				_tmpI += _tmpSec.Imom+_tmpSec.area * _tmpSec.ycg * _tmpSec.ycg;
-
 			}
-			//test rows
-			//Console.WriteLine ("Area analysed = " + _tmpA.ToString("N2")+"   Area real = "+_area.ToString("N2"));
-			//Console.WriteLine ("Static moment analysed = " + _tmpS.ToString("N2")+"   Static moment real = "+_Smom.ToString("N2"));
-			//_tmpI -= _tmpA * Math.Pow (_tmpS / _tmpA, 2);	
-			//Console.WriteLine ("Moment II analysed = " + _tmpI.ToString("N2")+"   Moment II real = "+_Imom.ToString("N2"));
-			//			foreach  (Point p_ in deltaSec)
-			//			{
-			//				Console.WriteLine("delta Area = "+p_.XCoord.ToString("N2")+"  ord y = "+p_.YCoord.ToString("N2"));
-			//			}
 		}
-
-
 	}
-
-
 }
 

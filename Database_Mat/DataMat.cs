@@ -31,7 +31,7 @@ namespace Database_Mat
 			{{12,16,20,25,30,35,40,45,50},
 			{15,20,25,30,37,45,50,55,60}};
 		
-		public enum bsx{bsx1=1,bsx2=2,bsx3=3}; //възможни диаграми напрежение-деформация
+		public enum bsx{bsx1=1,bsx2=2,bsx3=3,bsx4=4}; //възможни диаграми напрежение-деформация
 
 		private string _bcl="";
 		private double zf_ck=0, zf_ck_cube=0, zf_cm=0, zf_ctm=0, zf_ctk05=0, zf_ctk95=0;
@@ -85,7 +85,6 @@ namespace Database_Mat
 					double eta = _eps / eeps_c1;
 					double k = 1.05 * zEcm * eeps_c1 / zf_cm;
 					tempF = (k * eta - eta * eta) / (1 + (k - 2) * eta);
-					return tempF;
 					break;
 				}
 
@@ -100,6 +99,15 @@ namespace Database_Mat
 				{
 					if (_eps < eeps_c3)	tempF = - zf_ck;
 					else tempF = -zf_ck*(_eps/eeps_c3);
+					break;
+				}
+			//Правоъгълна диаграма, като се взема 0,8 от нея.
+			case bsx.bsx4:
+				{
+					if (_eps < 0.2 * eeps_cu3)
+						tempF = -zf_ck;
+					else
+						tempF = 0;
 					break;
 				}
 			default: return 0;
