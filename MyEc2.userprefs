@@ -1,9 +1,9 @@
 ﻿<Properties StartupItem="MyEc2\MyEc2.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MyEc2\Interact.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Sect_ExpEC2\Sect_Exp2.cs">
     <Files>
-      <File FileName="MyEc2\Program.cs" Line="44" Column="1" />
-      <File FileName="MyEc2\Interact.cs" Line="34" Column="19" />
+      <File FileName="MyEc2\Program.cs" Line="35" Column="34" />
+      <File FileName="MyEc2\Interact.cs" Line="41" Column="27" />
       <File FileName="Section_Explorer\Section_Explorer.cs" Line="1" Column="1" />
       <File FileName="Sect_ExpEC2\Sect_Exp2.cs" Line="1" Column="1" />
       <File FileName="Database_Mat\DataMat.cs" Line="1" Column="1" />
