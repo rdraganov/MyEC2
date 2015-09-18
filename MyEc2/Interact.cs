@@ -9,7 +9,7 @@ namespace MyEc2
 	public class Interact
 	{
 		//private double delt1 = 0, delt2=0;
-		private double eps = 0, epc = 0, x=0, pts=16;
+		private double eps = 0, epc = 0, x=0, pts=6;
 		private enum nx{ix=0,iec,ies,iM,iN};
 		private string[] dp1;
 		private List<string[]> l1 =new List<string[]>();
@@ -20,19 +20,27 @@ namespace MyEc2
 		public Interact (SBsec sbs1)
 		{
 			_sbs1 = sbs1;
-			eps = _sbs1.armList [1]._st.eps_uk * 0.9;
-			epc = eps;
+			double epsmax=_sbs1.armList [1]._st.eps_uk * 0.9;
+			double epsud=_sbs1.armList [1]._st.f_yk/sbs1.armList [1]._st.Es/1.15;
+			double epsmin = _sbs1.abet.eps_cu3;
+			double epsc2 = _sbs1.abet.eps_c2;
+			eps = epsmax;
+			epc = epsmax;
 			h = _sbs1.maxY - _sbs1.minY;
 
-			FLoop (-eps / pts,0);
-			epc = 0;
-			FLoop (_sbs1.abet.eps_cu3 / pts,0);
-			FLoop (0,-eps / pts);
-			FLoop (-(epc - _sbs1.abet.eps_c2) / pts,(eps +_sbs1.abet.eps_c2) / pts);
-			FLoop (-epc / pts, -(eps-_sbs1.abet.eps_cu3) / pts);
-			FLoop (_sbs1.armList [1]._st.eps_uk * 0.9 / pts,0);
-			FLoop (0,-eps/pts);
-			FLoop (0,_sbs1.armList [1]._st.eps_uk * 0.9 / pts);
+			FLoop (-epsmax / pts,0);   						//долу опън на мах, горе опън от мах до нула
+			FLoop (epsmin / pts,0); 						//долу опън на мах, горе натиск от нула до мах
+			pts = 16;
+			FLoop (0,- (epsmax) / pts);
+			pts = 6;
+			//FLoop (0,- (epsmax-epsud) / pts); 				// долу опън от мах до нула, горе ръб натиск на мах
+			FLoop (-(epc - epsc2) / pts,(eps +epsc2) / pts);// долу натиск от нула до 2, горе от мах до 2
+			FLoop (-epc / pts, -(eps-epsmin) / pts); 		// горе натиск от 2 до нула, долу натиск от 2 до мах
+			pts = 32;
+			FLoop (epsmax / pts,0); 						// горе се опъва от нула до мах, долу натиск на мах
+			pts = 6;
+			FLoop (0,-eps/pts); 							// горе опън на мах, долу натиск до нула
+			FLoop (0,epsmax / pts);							// горе опън на мах, долу расте до опън на мах
 			if (savea ()) Console.WriteLine("Запис - готово");
 		}
 
